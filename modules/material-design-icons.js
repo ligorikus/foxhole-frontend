@@ -7,7 +7,8 @@ const icons = [
 	'Web',
 	'ClipboardEditOutline',
 	'CogOutline',
-	'ArchiveOutline'
+	'ArchiveOutline',
+	'Steam'
 ]
 
 export default function () {

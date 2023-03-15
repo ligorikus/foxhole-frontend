@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+    version: 1.0.0
+    title: Foxhole frontend
+servers:
+  - url: http://localhost:8000/api/v1
+    description: Development server
+paths:
+  /me:
+    get:
+      description: Info about current user
+      responses:
+        200:
+          $ref: '#/components/responses/UserMeResponse'
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        steam_id:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        faction:
+          $ref: '#/components/schemas/Faction'
+    Faction:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        slug:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
+  responses:
+    UserMeResponse:
+      description: Info about current user
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: number
+              data:
+                $ref: '#/components/schemas/User'

@@ -1,10 +1,10 @@
-import type { NuxtAxiosInstance } from '@nuxtjs/axios'
+import { HttpClient } from '~/api/swagger/Foxhole/http-client';
 
 // eslint-disable-next-line import/no-mutable-exports
-let $axios: NuxtAxiosInstance
+let $api: HttpClient
 
-export function initializeAxios(axiosInstance: NuxtAxiosInstance) {
-  $axios = axiosInstance
+export function initializeApi(apiInstance: HttpClient) {
+  $api = apiInstance
 }
-   
-export { $axios }
+
+export { $api }
