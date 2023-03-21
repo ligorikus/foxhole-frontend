@@ -4,18 +4,27 @@ info:
     title: Foxhole frontend
 servers:
   - url: http://localhost:8000/api/v1
-    description: Development server
 paths:
-  /me:
+  /users/me:
     get:
       description: Info about current user
       responses:
         200:
-          $ref: '#/components/responses/UserMeResponse'
+          description: Info about current user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
 components:
   schemas:
     User:
       type: object
+      required:
+        - id
+        - name
+        - steam_id
+        - created_at
+        - updated_at
       properties:
         id:
           type: number
@@ -31,6 +40,12 @@ components:
           $ref: '#/components/schemas/Faction'
     Faction:
       type: object
+      required:
+        - id
+        - name
+        - slug
+        - created_at
+        - updated_at
       properties:
         id:
           type: number
@@ -42,15 +57,13 @@ components:
           type: string
         updated_at:
           type: string
-  responses:
-    UserMeResponse:
-      description: Info about current user
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              success:
-                type: number
-              data:
-                $ref: '#/components/schemas/User'
+    UserResponse:
+        type: object
+        required:
+          - data
+          - success
+        properties:
+          success:
+            type: boolean
+          data:
+            $ref: '#/components/schemas/User'

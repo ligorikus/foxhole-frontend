@@ -1,9 +1,15 @@
-import { Module, VuexModule } from 'vuex-module-decorators'
+import { namespace } from 'vuex-class';
+import { Module } from 'vuex-module-decorators';
+import { initialState, TState } from '~/domain/users';
+import BaseVuexModule from '~/types/vuex';
+
+export const STORE_NS = 'foxhole/users';
+export const store = namespace(STORE_NS);
 
 @Module({
-  name: 'users',
   stateFactory: true,
   namespaced: true,
 })
-export default class UserModule extends VuexModule {
+export class StoreModule extends BaseVuexModule<TState> {
+  public internalState: TState = initialState();
 }

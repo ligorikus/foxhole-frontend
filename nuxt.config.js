@@ -25,7 +25,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/api-accessor'
+    '~/plugins/presenter'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -66,7 +66,9 @@ export default {
   },
 
   auth: {
-    localStorage: false,
+    plugins: [
+      '~/plugins/presenter.ts'
+    ],
     strategies: {
       local: {
         scheme: '~/schemes/steamScheme',

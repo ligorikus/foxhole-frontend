@@ -10,6 +10,7 @@ const getConfig: (
 ) => GenerateApiParams = (input, output) => ({
   input,
   output,
+  name: 'Foxhole.ts',
   silent: true,
   disableStrictSSL: true,
   cleanOutput: true,

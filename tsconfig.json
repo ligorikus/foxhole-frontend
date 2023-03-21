@@ -16,9 +16,10 @@
       "~/*": ["./*"],
       "@/*": ["./*"]
     },
-    "types": ["@nuxt/types", "@nuxtjs/axios", "@types/node", "@nuxtjs/auth-next"],
+    "types": ["@nuxt/types", "@nuxtjs/axios", "node", "@nuxtjs/auth-next"],
     "resolveJsonModule": true
   },
+  "include": ["./@types/**/*"],
   "exclude": ["node_modules", ".nuxt", "dist"],
   "ts-node": {
     "compilerOptions": {

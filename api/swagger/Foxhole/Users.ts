@@ -9,26 +9,21 @@
  * ---------------------------------------------------------------
  */
 
-import { User } from './data-contracts'
+import { UserResponse } from './data-contracts'
 import { HttpClient, RequestParams } from './http-client'
 
-export class Me<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
+export class Users<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
   /**
    * @description Info about current user
    *
-   * @name GetMe
-   * @request GET:/me
+   * @name GetUsers
+   * @request GET:/users/me
    */
-  getMe = (params: RequestParams = {}) =>
-    this.request<
-      {
-        success?: number
-        data?: User
-      },
-      any
-    >({
-      path: `/me`,
+  getUsers = (params: RequestParams = {}) =>
+    this.request<UserResponse, any>({
+      path: `/users/me`,
       method: 'GET',
+      format: 'json',
       ...params,
     })
 }

@@ -1,12 +1,23 @@
-import { HttpClient } from '~/api/swagger/Foxhole/http-client';
+import { Auth } from '@nuxtjs/auth-next'
+import { IPresenterPlugin } from '~/plugins/presenter';
 
-declare module '~auth/runtime' {
-  // Here you declare what you're trying to import from `~auth/runtime`
-  export { RefreshScheme } from '@nuxtjs/auth-next'
+declare module 'vue/types/vue' {
+  interface Vue {
+    $presenter: IPresenterPlugin;
+  }
 }
 
 declare module '@nuxt/types' {
-  interface Context {
-    $api: HttpClient;
+  interface NuxtAppOptions {
+    $presenter: IPresenterPlugin;
+    $auth: Auth;
   }
+  interface Context {
+    $presenter: IPresenterPlugin;
+    $auth: Auth;
+  }
+}
+
+declare module '~auth/runtime' {
+  export { RefreshScheme } from '@nuxtjs/auth-next'
 }
