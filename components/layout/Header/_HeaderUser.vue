@@ -14,18 +14,10 @@
 
 <script lang="ts">
 import { Component, State, Vue } from 'nuxt-property-decorator';
-import { IPresenters } from '../../../domain/users';
 
 @Component
 export default class HeaderUser extends Vue {
   @State(state => state.auth.loggedIn) loggedIn: boolean;
-  presenters: IPresenters
-
-  async created() {
-    // @ts-ignore
-    this.presenters = this.$presenter.usersInstance;
-    await this.presenters.usersPresenter.onLoadUsersMe();
-  }
 }
 </script>
 <style lang="scss">

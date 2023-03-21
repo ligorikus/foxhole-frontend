@@ -15,6 +15,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserResponse'
+  /users/me/fraction:
+    post:
+      description: Select faction
+      responses:
+        200:
+          description: Select user faction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
 components:
   schemas:
     User:

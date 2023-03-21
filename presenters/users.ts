@@ -3,6 +3,7 @@ import { IContext, initialState, IPresenter, IPresenters, IService, STORE_NS, TB
 import { VuexObservable } from '~/types/vuex';
 import * as TModule from '~/store/users';
 import { Service } from '~/services/users';
+import PresenterCatcher from '~/decorators/PresenterCatcher';
 
 class Presenter
   extends VuexObservable<TState, TModule.StoreModule>
@@ -12,6 +13,7 @@ class Presenter
     super(store, initialState(), STORE_NS);
   }
 
+  @PresenterCatcher()
   async onLoadUsersMe(): Promise<void> {
     const user = await this.service.getMe();
     this.onChangeState({ user });

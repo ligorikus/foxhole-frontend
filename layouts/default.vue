@@ -9,9 +9,27 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator';
+import { Component, State, Vue } from 'nuxt-property-decorator';
+import { IPresenters } from '~/domain/users';
+import { STORE_NS as STORE_NS_USERS } from '~/store/users';
+import { User } from '~/domain/users';
+
 @Component
 export default class DefaultLayout extends Vue {
+  @State(state => state.auth.loggedIn) loggedIn: boolean;
+  @State(state => state[STORE_NS_USERS].internalState.user) user: User;
+  presenters: IPresenters
+
+  async created() {
+    // @ts-ignore
+    this.presenters = this.$presenter.usersInstance;
+    if (this.loggedIn) {
+      await this.presenters.usersPresenter.onLoadUsersMe();
+      if (!this.user.faction) {
+        this.$router.push('faction');
+      }
+    }
+  }
 }
 </script>
 <style lang="scss">

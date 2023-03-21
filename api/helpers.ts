@@ -31,17 +31,18 @@ export const createApi = <T extends { baseUrl: string }, SecurityDataType>(
 
 export const customFetch: ($auth: Auth) => typeof fetch =
   ($auth) => (input, init) => {
+    if (!init) {
+      init = {};
+    }
+    init.headers = {
+      'Accept': 'application/json'
+    };
     // @ts-ignore
     const token = $auth.strategy.token.get();
     if (!token) {
       return fetch(input, init);
     }
-    if (!init) {
-      init = {};
-    }
-    init.headers = {
-      'Authorization': token
-    };
+    init.headers.Authorization = token;
     return fetch(input, init);
   };
 

@@ -1,6 +1,8 @@
-import { User } from "~/api/swagger/Foxhole/data-contracts";
+import type { User } from "~/api/swagger/Foxhole/data-contracts";
 import { Service as UserService } from "~/services/users";
 import { IVuexObservable, TFetchState } from "~/types/vuex";
+
+export { User };
 
 export interface IService {
   getMe(): Promise<User>;
